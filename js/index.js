@@ -79,7 +79,74 @@
     myChart.setOption(option);
 
     // 4. 让图标跟随屏幕自动的去适应
-    window.addEventListener('resize', function(){
+    window.addEventListener('resize', function () {
         myChart.resize();
     });
+})();
+
+// 柱状图2（横向）
+(function () {
+    // 1. 实例化对象
+    var myChart = echarts.init(document.querySelector(".bar2 .chart"));
+    // 2. 指定配置和数据
+    option = {
+        // title: {
+        //   text: 'World Population'
+        // },
+        // tooltip: {
+        //   trigger: 'axis',
+        //   axisPointer: {
+        //     type: 'shadow'
+        //   }
+        // },
+        // legend: {},
+        grid: {
+            top: '10%',
+            left: '22%',
+            bottom: '10%',
+        //    containLabel: true
+        },
+        // 不显示X轴的相关信息
+        xAxis: {
+            show: false
+        },
+        yAxis: {
+            type: 'category',
+            data: ['Brazil', 'Indonesia', 'USA', 'India', 'China', 'World'],
+            // 不显示y轴的线
+            axisLine: {
+                show: false
+            },
+            // 不显示刻度
+            axisTick: {
+                show: false
+            },
+            //把刻度标签里面的文字颜色设置为白色
+            axisLabel: {
+                color: "#fff"
+            }
+        },
+        series: [
+            {
+                name: '条',
+                type: 'bar',
+                data: [18203, 23489, 29034, 104970, 131744, 630230],
+                // 修改第一组柱子的圆角
+                itemStyle: {
+                    barBorderRadius: 20
+                },
+                // 柱子之间的距离
+                barCategoryGap: 50,
+                //柱子的宽度
+                barWidth: 10
+            },
+            {
+                name: '2012',
+                type: 'bar',
+                data: [19325, 23438, 31000, 121594, 134141, 681807]
+            }
+        ]
+    };
+    // 3. 把配置给实例对象
+    myChart.setOption(option);
 })();
