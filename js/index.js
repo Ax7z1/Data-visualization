@@ -86,6 +86,8 @@
 
 // 柱状图2（横向）
 (function () {
+    var myColor = ["#1089E7", "#F57474", "#56D0E3", "#F8B448", "#8B78F6"];
+
     // 1. 实例化对象
     var myChart = echarts.init(document.querySelector(".bar2 .chart"));
     // 2. 指定配置和数据
@@ -104,36 +106,63 @@
             top: '10%',
             left: '22%',
             bottom: '10%',
-        //    containLabel: true
+            //    containLabel: true
         },
         // 不显示X轴的相关信息
         xAxis: {
             show: false
         },
-        yAxis: {
-            type: 'category',
-            data: ['Brazil', 'Indonesia', 'USA', 'India', 'China', 'World'],
-            // 不显示y轴的线
-            axisLine: {
-                show: false
+        yAxis: [
+            {
+                type: 'category',
+                data: ['新站1期', '新站2期', '新站3期', '新站4期', '新站5期'],
+                // 不显示y轴的线
+                axisLine: {
+                    show: false
+                },
+                // 不显示刻度
+                axisTick: {
+                    show: false
+                },
+                //把刻度标签里面的文字颜色设置为白色
+                axisLabel: {
+                    color: "#fff"
+                },
             },
-            // 不显示刻度
-            axisTick: {
-                show: false
-            },
-            //把刻度标签里面的文字颜色设置为白色
-            axisLabel: {
-                color: "#fff"
+            {
+                type: 'category',
+                data: ['778', '896', '640', '850', '660'],
+                // 不显示y轴的线
+                axisLine: {
+                    show: false
+                },
+                // 不显示刻度
+                axisTick: {
+                    show: false
+                },
+                //把刻度标签里面的文字颜色设置为白色
+                axisLabel: {
+                    color: "#fff"
+                },
             }
-        },
+        ],
         series: [
             {
                 name: '条',
                 type: 'bar',
-                data: [18203, 23489, 29034, 104970, 131744, 630230],
+                data: [55, 33, 47, 69, 94],
+                yAxisIndex: 0,
+                yAxisIndex: 1,
                 // 修改第一组柱子的圆角
                 itemStyle: {
-                    barBorderRadius: 20
+                    barBorderRadius: 20,
+                    // 此时的color 可以修改柱子的颜色
+                    color: function (params) {
+                        //params 传进来的是柱子对象
+                        //    console.log(params)
+                        // dataIndex是当前柱子的索引号
+                        return myColor[params.dataIndex];
+                    }
                 },
                 // 柱子之间的距离
                 barCategoryGap: 50,
@@ -148,9 +177,17 @@
                 }
             },
             {
-                name: '2012',
+                name: '框',
                 type: 'bar',
-                data: [19325, 23438, 31000, 121594, 134141, 681807]
+                barCategoryGap: 50,
+                barWidth: 15,
+                itemStyle: {
+                    color: "none",
+                    borderColor: "#00c1de",
+                    borderWidth: 3,
+                    barBorderRadius: 15
+                },
+                data: [100, 100, 100, 100, 100]
             }
         ]
     };
