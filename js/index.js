@@ -137,8 +137,15 @@
                 },
                 // 柱子之间的距离
                 barCategoryGap: 50,
-                //柱子的宽度
-                barWidth: 10
+                // 柱子的宽度
+                barWidth: 10,
+                // 显示柱子内的文字
+                label: {
+                    show: true,
+                    position: 'inside',
+                    // {c} 会自动解析data里的数据
+                    formatter: "{c}%"
+                }
             },
             {
                 name: '2012',
