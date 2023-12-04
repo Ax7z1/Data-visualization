@@ -115,6 +115,7 @@
         yAxis: [
             {
                 type: 'category',
+                inverse: true,
                 data: ['新站1期', '新站2期', '新站3期', '新站4期', '新站5期'],
                 // 不显示y轴的线
                 axisLine: {
@@ -131,6 +132,7 @@
             },
             {
                 type: 'category',
+                inverse: true,
                 data: ['778', '896', '640', '850', '660'],
                 // 不显示y轴的线
                 axisLine: {
@@ -193,4 +195,8 @@
     };
     // 3. 把配置给实例对象
     myChart.setOption(option);
+    // 4. 让图标跟随屏幕自动的去适应
+    window.addEventListener('resize', function () {
+        myChart.resize();
+    });
 })();
