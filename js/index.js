@@ -200,3 +200,88 @@
         myChart.resize();
     });
 })();
+
+// 折线图1模块制作
+(function (){
+    // 1.实例化对象
+    var myChart = echarts.init(document.querySelector('.line .chart'));
+    // 2.指定配置
+    option = {
+        // 通过color修改两条线的颜色
+        color: ["#00f2f1", "#ed3f35"],
+        tooltip: {
+          trigger: 'axis'
+        },
+        legend: {
+          textStyle: {
+            color: "#4c9bfd"
+          },
+          // 这个10% 必须加引号
+          right: '10%'
+            
+        },
+        grid: {
+          top: '20%',
+          left: '3%',
+          right: '4%',
+          bottom: '3%',
+          show: true, // 显示边框
+          borderColor: "#012f4a",
+          containLabel: true // 包含刻度文字在内
+        },
+        // toolbox: {
+        //   feature: {
+        //     saveAsImage: {}
+        //   }
+        // },
+        xAxis: {
+          type: 'category',
+          boundaryGap: false,
+          data: ['1月', '2月', '3月', '4月', '5月', '6月', '7月','8月','9月','10月','11月','12月'],
+          axisTick: {
+            show: false // 去除刻度线
+          },
+          axisLabel: {
+            color: '#4c9bfd' // 刻度标签颜色
+          },
+          axisLine: {
+            show: false // 去除轴线
+          }
+        },
+        yAxis: {
+          type: 'value',
+          axisTick: {
+            show: false // 去除刻度线
+          },
+          axisLabel: {
+            color: '#4c9bfd' //刻度标签颜色
+          },
+          axisLine: {
+            show: false // 去除轴线
+          },
+          splitLine: {
+            lineStyle: {
+                color: "#012f4a"
+            }
+          }
+        },
+        series: [
+          {
+            name: '新增电池',
+            type: 'line',
+            smooth: true, // 折线是否平滑显示
+            data: [120, 70, 101, 134, 90, 230, 210,123,345,233,345,234]
+          },
+          {
+            name: '新增电芯',
+            type: 'line',
+            smooth: true, // 是否平滑显示
+            data: [220, 45, 191, 234, 290, 330, 310,234,157,654,21,456]
+          }
+        ]
+      };
+    // 3.把配置给实例对象
+    myChart.setOption(option);
+
+    document.querySelect
+})();
