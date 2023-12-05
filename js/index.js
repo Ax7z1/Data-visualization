@@ -330,7 +330,6 @@
         },
         legend: {
             top: "0%",
-            data: ['Email', 'Union Ads', 'Video Ads', 'Direct', 'Search Engine'],
             textStyle: {
                 color: "rgba(255,255,255,.5)",
                 fontSize: "12"
@@ -388,7 +387,7 @@
         ],
         series: [
             {
-                name: 'Email',
+                name: '南京报警',
                 type: 'line',
                 smooth: true,
                 // 单独修改当前线条的样式
@@ -399,10 +398,10 @@
                 // 填充颜色设置
                 areaStyle: {
                     // 渐变色，只需要复制即可
-                    color: new echarts.graphic.LinearGradient(0,0,0,1,
+                    color: new echarts.graphic.LinearGradient(0, 0, 0, 1,
                         [
-                            {offset: 0,color: "rgba(1, 132, 213, 0.4)"},
-                            { offset: 0.8,color: "rgba(1, 132, 213, 0.1)"}
+                            { offset: 0, color: "rgba(1, 132, 213, 0.4)" },
+                            { offset: 0.8, color: "rgba(1, 132, 213, 0.1)" }
                         ],
                         false
                     ),
@@ -424,7 +423,7 @@
                 data: [30, 40, 30, 40, 30, 40, 30, 60, 20, 40, 30, 40, 30, 40, 30, 40, 30, 60, 20, 40, 30, 40, 30, 40, 30, 40, 20, 60, 50, 40]
             },
             {
-                name: 'Union Ads',
+                name: '合肥报警',
                 type: 'line',
                 smooth: true,
                 areaStyle: {
@@ -459,9 +458,69 @@
         ]
     };
     myChart.setOption(option);
-    window.addEventListener("resize", function(){
+    window.addEventListener("resize", function () {
         myChart.resize();
     })
 })();
 
-//饼状图 
+//饼状图 1
+(function () {
+    // 1. 实例化对象
+    var myChart = echarts.init(document.querySelector('.pie .chart'));
+    // 2. 指定配置
+    var option = {
+        color: [
+            "#065aab",
+            "#066eab",
+            "#0682ab",
+            "#0696ab",
+            "#06a0ab",
+          ],
+        tooltip: {
+            trigger: 'item'
+        },
+        legend: {
+            // 距离底部为 0%
+            bottom: '0%',
+           // left: '0%',
+            itemWidth: 10,
+            itemHeight: 10,
+            //orient: 'vertical' //垂直
+            textStyle: {
+                color: "rgba(255,255,255,.5)",
+                fontSize: 12
+            }
+        },
+        series: [
+            {
+                name: '温度设备分布',
+                type: 'pie',
+                // 设置饼形图在容器中的位置
+                center: ["50%","40%"],
+                // 内圆半径和外圆半径，百分比是相对于容器宽度来说的
+                radius: ['40%', '60%'],
+                avoidLabelOverlap: false,
+                label: { //图形上的文字
+                    show: false,
+                    position: 'center'
+                },
+                labelLine: { 
+                    show: false // 链接文字和图形的线是否显示
+                },
+                data: [
+                    { value: 1, name: "0度以下" },
+                    { value: 4, name: "20-29度" },
+                    { value: 17, name: "30-39度" },
+                    { value: 8, name: "40-49度" },
+                    { value: 2, name: "50度以上" }
+           ]
+            }
+        ]
+    };
+    // 3. 把配置给实例对象
+    myChart.setOption(option);
+    // 4.让图标跟随屏幕自适应
+    window.addEventListener("resize",function(){
+        myChart.resize();
+    })
+})();
