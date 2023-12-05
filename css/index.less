@@ -60,6 +60,7 @@ header {
         //第二列
         flex: 5;
         margin: 0 .125rem .1875rem;
+        overflow: hidden;
 
     }
 
@@ -147,13 +148,13 @@ header {
 
 // no数字模块
 .no {
-    position: relative;
+   // position: relative;
     background: rgba(101, 132, 226, 0.1);
     padding: .1875rem;
 
     .no-hd {
         border: 1px solid rgba(25, 186, 139, 0.17);
-
+        position: relative;
         &::before {
             position: absolute;
             top: 0;
@@ -206,7 +207,6 @@ header {
     .no-bd {
         ul {
             display: flex;
-
             li {
                 flex: 1;
                 text-align: center;
@@ -292,3 +292,15 @@ header {
         }
     }
 }
+
+/* 约束屏幕尺寸 */
+@media screen and (max-width: 1024px) {
+    html {
+      font-size: 42px !important;
+    }
+  }
+  @media screen and (min-width: 1920px) {
+    html {
+      font-size: 80px !important;
+    }
+  }

@@ -47,6 +47,7 @@ header .showTime {
 .mainbox .column:nth-child(2) {
   flex: 5;
   margin: 0 0.125rem 0.1875rem;
+  overflow: hidden;
 }
 .mainbox .panel {
   position: relative;
@@ -119,11 +120,11 @@ header .showTime {
   height: 3rem;
 }
 .no {
-  position: relative;
   background: rgba(101, 132, 226, 0.1);
   padding: 0.1875rem;
 }
 .no .no-hd {
+  position: relative;
   border: 1px solid rgba(25, 186, 139, 0.17);
 }
 .no .no-hd::before {
@@ -238,5 +239,16 @@ header .showTime {
   }
   to {
     transform: translate(-50%, -50%) rotate(-360deg);
+  }
+}
+/* 约束屏幕尺寸 */
+@media screen and (max-width: 1024px) {
+  html {
+    font-size: 42px !important;
+  }
+}
+@media screen and (min-width: 1920px) {
+  html {
+    font-size: 80px !important;
   }
 }
