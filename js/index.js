@@ -86,6 +86,7 @@
 
 // 柱状图2（横向）
 (function () {
+
     var myColor = ["#1089E7", "#F57474", "#56D0E3", "#F8B448", "#8B78F6"];
 
     // 1. 实例化对象
@@ -195,14 +196,32 @@
     };
     // 3. 把配置给实例对象
     myChart.setOption(option);
-    // 4. 让图标跟随屏幕自动的去适应
+    // 4. 让图表跟随屏幕自动的去适应
     window.addEventListener('resize', function () {
         myChart.resize();
     });
 })();
 
 // 折线图1模块制作
-(function (){
+(function () {
+
+    var yearData = [
+        {
+            year: '2020',  // 年份
+            data: [  // 两个数组是因为有两条线
+                [24, 40, 101, 134, 90, 230, 210, 230, 120, 230, 210, 120],
+                [40, 64, 191, 324, 290, 330, 310, 213, 180, 200, 180, 79]
+            ]
+        },
+        {
+            year: '2021',  // 年份
+            data: [  // 两个数组是因为有两条线
+                [123, 175, 112, 197, 121, 67, 98, 21, 43, 64, 76, 38],
+                [143, 131, 165, 123, 178, 21, 82, 64, 43, 60, 19, 34]
+            ]
+        }
+    ];
+
     // 1.实例化对象
     var myChart = echarts.init(document.querySelector('.line .chart'));
     // 2.指定配置
@@ -210,24 +229,24 @@
         // 通过color修改两条线的颜色
         color: ["#00f2f1", "#ed3f35"],
         tooltip: {
-          trigger: 'axis'
+            trigger: 'axis'
         },
         legend: {
-          textStyle: {
-            color: "#4c9bfd"
-          },
-          // 这个10% 必须加引号
-          right: '10%'
-            
+            textStyle: {
+                color: "#4c9bfd"
+            },
+            // 这个10% 必须加引号
+            right: '10%'
+
         },
         grid: {
-          top: '20%',
-          left: '3%',
-          right: '4%',
-          bottom: '3%',
-          show: true, // 显示边框
-          borderColor: "#012f4a",
-          containLabel: true // 包含刻度文字在内
+            top: '20%',
+            left: '3%',
+            right: '4%',
+            bottom: '3%',
+            show: true, // 显示边框
+            borderColor: "#012f4a",
+            containLabel: true // 包含刻度文字在内
         },
         // toolbox: {
         //   feature: {
@@ -235,53 +254,70 @@
         //   }
         // },
         xAxis: {
-          type: 'category',
-          boundaryGap: false,
-          data: ['1月', '2月', '3月', '4月', '5月', '6月', '7月','8月','9月','10月','11月','12月'],
-          axisTick: {
-            show: false // 去除刻度线
-          },
-          axisLabel: {
-            color: '#4c9bfd' // 刻度标签颜色
-          },
-          axisLine: {
-            show: false // 去除轴线
-          }
+            type: 'category',
+            boundaryGap: false,
+            data: ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月'],
+            axisTick: {
+                show: false // 去除刻度线
+            },
+            axisLabel: {
+                color: '#4c9bfd' // 刻度标签颜色
+            },
+            axisLine: {
+                show: false // 去除轴线
+            }
         },
         yAxis: {
-          type: 'value',
-          axisTick: {
-            show: false // 去除刻度线
-          },
-          axisLabel: {
-            color: '#4c9bfd' //刻度标签颜色
-          },
-          axisLine: {
-            show: false // 去除轴线
-          },
-          splitLine: {
-            lineStyle: {
-                color: "#012f4a"
+            type: 'value',
+            axisTick: {
+                show: false // 去除刻度线
+            },
+            axisLabel: {
+                color: '#4c9bfd' //刻度标签颜色
+            },
+            axisLine: {
+                show: false // 去除轴线
+            },
+            splitLine: {
+                lineStyle: {
+                    color: "#012f4a"
+                }
             }
-          }
         },
         series: [
-          {
-            name: '新增电池',
-            type: 'line',
-            smooth: true, // 折线是否平滑显示
-            data: [120, 70, 101, 134, 90, 230, 210,123,345,233,345,234]
-          },
-          {
-            name: '新增电芯',
-            type: 'line',
-            smooth: true, // 是否平滑显示
-            data: [220, 45, 191, 234, 290, 330, 310,234,157,654,21,456]
-          }
+            {
+                name: '新增电池',
+                type: 'line',
+                smooth: true, // 折线是否平滑显示
+                data: yearData[0].data[0]
+            },
+            {
+                name: '新增电芯',
+                type: 'line',
+                smooth: true, // 是否平滑显示
+                data: yearData[0].data[1]
+            }
         ]
-      };
+    };
     // 3.把配置给实例对象
     myChart.setOption(option);
+    // 4. 让图表跟随屏幕自动的去适应
+    window.addEventListener('resize', function () {
+        myChart.resize();
+    });
 
-    document.querySelect
+    // 5. 点击切换效果
+    $(".line h2").on('click', 'a', function () {
+        //alert(1);
+        //console.log($(this).index());
+        // 点击 a 之后，根据当前a的索引号 找到对应的yearData的相关对象
+        //console.log(yearData[$(this).index()]);
+        var obj = yearData[$(this).index()];
+        option.series[0].data = obj.data[0];
+        option.series[1].data = obj.data[1];
+        // 需要重新渲染
+        myChart.setOption(option);
+    });
+
 })();
+
